@@ -4,7 +4,9 @@
 
 An Astro TypeScript learning site ([`src/elearning`](src/elearning/README.md)) and the graded,
 runnable solutions to every coding exercise in it ([`src/exercises`](src/exercises/README.md)),
-deployed to Cloudflare Pages.
+deployed to Cloudflare.
+
+**Live:** <https://typescript-course.zerozero-dev7.workers.dev>
 
 ## Setup
 
@@ -21,7 +23,8 @@ pnpm --filter elearning verify
 
 ## Deploying
 
-Deployed as a Cloudflare Worker with static assets (Workers Builds, connected to this repo). There
+Deployed to <https://typescript-course.zerozero-dev7.workers.dev> as a Cloudflare Worker with static
+assets (Workers Builds, connected to this repo; every push to `main` deploys). There
 is no Worker script: [`wrangler.jsonc`](wrangler.jsonc) points Wrangler at the built site.
 
 | Setting | Value |

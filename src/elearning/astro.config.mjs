@@ -8,10 +8,11 @@ import { CODE_THEMES, CODE_DEFAULT_COLOR } from './src/lib/code-theme.ts'
 
 // https://astro.build/config
 export default defineConfig({
-  // PLACEHOLDER: replace with the real domain before the first production deploy.
+  // The Workers deploy (see wrangler.jsonc). Swap for the custom domain once
+  // there is one, along with the Sitemap: line in public/robots.txt.
   // Canonical URLs, OpenGraph tags and the sitemap are all derived from this —
   // `@astrojs/sitemap` silently emits nothing if `site` is unset.
-  site: 'https://codelane.example',
+  site: 'https://typescript-course.zerozero-dev7.workers.dev',
 
   integrations: [sitemap()],
 
