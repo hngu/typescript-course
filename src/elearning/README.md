@@ -306,9 +306,9 @@ and the page flashes the wrong theme on load.
 ## Deploying
 
 The build is a plain static directory (`dist/`) and works on any static host. **Cloudflare Pages is
-the recommended target** — see the note on advertising below. This repository is its own Pages
-project, connected through the Pages Git integration: production builds from `main`, previews from
-PRs, with the root directory left blank and the settings in the first row below.
+the recommended target** — see the note on advertising below. This repository actually deploys as
+a Cloudflare Worker with static assets (`wrangler.jsonc` at the repo root) — see the root README for
+the exact build settings.
 
 | Host | Build command | Output directory |
 | --- | --- | --- |

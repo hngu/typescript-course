@@ -21,17 +21,22 @@ pnpm --filter elearning verify
 
 ## Deploying
 
-Cloudflare Pages builds `main` (and previews PRs) through the Pages Git integration:
+Deployed as a Cloudflare Worker with static assets (Workers Builds, connected to this repo). There
+is no Worker script: [`wrangler.jsonc`](wrangler.jsonc) points Wrangler at the built site.
 
 | Setting | Value |
 | --- | --- |
 | Build command | `pnpm --filter elearning build` |
-| Build output directory | `src/elearning/dist` |
+| Deploy command | `npx wrangler deploy` |
 | Root directory | blank — the build reads `src/exercises` |
-| `PNPM_VERSION` env var | `11.20.0`, on **both** Production and Preview |
+| `PNPM_VERSION` build variable | `11.20.0` |
 
-**Pages does not read `packageManager`.** The pnpm version comes only from the `PNPM_VERSION`
-variable in the dashboard (Settings → Variables and Secrets); without it Pages falls back to its
-default pnpm, which may not match the lockfile. When you bump pnpm, change it in both places:
-`package.json#packageManager` (CI, Corepack) and `PNPM_VERSION` on Pages, then redeploy. Node needs
-nothing — Pages reads `.nvmrc`.
+Wrangler doesn't need to be a dependency: `npx` fetches it on the build machine. Keep
+`wrangler.jsonc` committed — without it Wrangler runs its application detection, which fails at the
+root of a pnpm workspace.
+
+**Cloudflare does not read `packageManager`.** The pnpm version comes only from the `PNPM_VERSION`
+build variable in the dashboard (Settings → Build → Variables and secrets); without it the build
+falls back to the image's default pnpm, which may not match the lockfile. When you bump pnpm, change
+it in both places: `package.json#packageManager` (CI, Corepack) and `PNPM_VERSION`, then redeploy.
+Node needs nothing — the build image reads `.nvmrc`.
